@@ -8,7 +8,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #fce4ec; /* สีพื้นหลังเว็บ */
+    background-color: #ffffff; /* สีพื้นหลังเว็บ */
     font-family: 'Georgia', serif;
 }
 
@@ -16,7 +16,9 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 30px;
+    gap: 50px; /* เพิ่มระยะห่างนิดนึง เผื่อซูมแล้วจดหมายเด้งไปทับปุ่ม */
+    
+    transform: scale(1.5); /* <--- เพิ่มบรรทัดนี้เพื่อซูมเข้า! */
 }
 
 /* --- ตัวซองหลัก --- */
@@ -24,7 +26,7 @@ body {
     position: relative;
     width: 300px;
     height: 200px;
-    background-color: #d81b60; /* สีด้านในซอง */
+    background-color: #ffffff; /* สีด้านในซอง */
     box-shadow: 0 10px 20px rgba(0,0,0,0.15);
 }
 
@@ -37,7 +39,7 @@ body {
     height: 0;
     border-left: 150px solid transparent;
     border-right: 150px solid transparent;
-    border-top: 110px solid #f06292; /* สีฝาซอง */
+    border-top: 110px solid #ffffff; /* สีฝาซอง */
     transform-origin: top;
     z-index: 3; /* อยู่หน้าสุด */
     
@@ -52,9 +54,9 @@ body {
     left: 0;
     width: 0;
     height: 0;
-    border-left: 150px solid #e91e63;
-    border-right: 150px solid #e91e63;
-    border-bottom: 100px solid #c2185b;
+    border-left: 150px solid #ffffff;
+    border-right: 150px solid #ffffff;
+    border-bottom: 100px solid #ffffff;
     z-index: 2; /* บังจดหมายไว้ */
 }
 
@@ -83,16 +85,16 @@ body {
 .logo {
     font-size: 36px;
     font-weight: bold;
-    color: #d81b60;
+    color: #ffffff;
     margin-bottom: 10px;
 }
 .letter h2 {
     margin: 0;
-    color: #333;
+    color: #ffffff;
     font-size: 20px;
 }
 .letter p {
-    color: #666;
+    color: #ffffff;
     font-size: 14px;
 }
 
@@ -119,7 +121,7 @@ body {
 
 /* --- ปุ่มกด --- */
 button {
-    background-color: #c2185b;
+    background-color: #ffffff;
     color: white;
     border: none;
     padding: 12px 24px;
@@ -130,5 +132,6 @@ button {
     transition: 0.3s;
 }
 button:hover {
-    background-color: #880e4f;
+    background-color: #ffffff;
 }
+
