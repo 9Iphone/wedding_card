@@ -1,20 +1,18 @@
 const envelope = document.getElementById('envelope');
-const openBtn = document.getElementById('open-btn');
-const closeBtn = document.getElementById('close-btn');
+const toggleBtn = document.getElementById('toggle-btn');
 
-// ฟังก์ชันเปิดจดหมาย (เพิ่มคลาส 'open')
-function openLetter() {
-    envelope.classList.add('open');
+function toggleEnvelope() {
+    // สลับคลาส open
+    envelope.classList.toggle('open');
+    
+    // เปลี่ยนข้อความบนปุ่ม
+    if (envelope.classList.contains('open')) {
+        toggleBtn.textContent = 'ปิดซอง';
+    } else {
+        toggleBtn.textContent = 'เปิดซอง';
+    }
 }
 
-// ฟังก์ชันปิดจดหมาย (เอาคลาส 'open' ออก)
-function closeLetter() {
-    envelope.classList.remove('open');
-}
-
-// สั่งงานเมื่อกดปุ่ม
-openBtn.addEventListener('click', openLetter);
-closeBtn.addEventListener('click', closeLetter);
-
-// เพิ่มลูกเล่น: ให้กดที่ตัวซองจดหมายตรงๆ เพื่อเปิดได้ด้วย
-envelope.addEventListener('click', openLetter);
+// ผูกการทำงานกับปุ่มและตัวซอง
+toggleBtn.addEventListener('click', toggleEnvelope);
+envelope.addEventListener('click', toggleEnvelope);
