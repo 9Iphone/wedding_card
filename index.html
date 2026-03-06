@@ -24,22 +24,6 @@
         </div>
     </div>
 
-    <script>
-        const envelope = document.getElementById('envelope');
-        const toggleBtn = document.getElementById('toggle-btn');
-
-        function toggleEnvelope() {
-            envelope.classList.toggle('open');
-            
-            if (envelope.classList.contains('open')) {
-                toggleBtn.textContent = 'ปิดซอง';
-            } else {
-                toggleBtn.textContent = 'เปิดซอง';
-            }
-        }
-
-        toggleBtn.addEventListener('click', toggleEnvelope);
-        envelope.addEventListener('click', toggleEnvelope);
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
