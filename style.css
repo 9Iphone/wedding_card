@@ -39,7 +39,7 @@ body {
     height: 0;
     border-left: 150px solid transparent;
     border-right: 150px solid transparent;
-    border-top: 110px solid #f06292; /* สีฝาซอง */
+    border-top: 110px solid #ffffff; /* สีฝาซอง */
     transform-origin: top;
     z-index: 3; /* อยู่หน้าสุด */
     
@@ -54,9 +54,9 @@ body {
     left: 0;
     width: 0;
     height: 0;
-    border-left: 150px solid #e91e63;
-    border-right: 150px solid #e91e63;
-    border-bottom: 100px solid #c2185b;
+    border-left: 150px solid #ffffff;
+    border-right: 150px solid #ffffff;
+    border-bottom: 100px solid #ffffff;
     z-index: 2; /* บังจดหมายไว้ */
 }
 
@@ -85,16 +85,16 @@ body {
 .logo {
     font-size: 36px;
     font-weight: bold;
-    color: #d81b60;
+    color: #ffffff;
     margin-bottom: 10px;
 }
 .letter h2 {
     margin: 0;
-    color: #333;
+    color: #ffffff;
     font-size: 20px;
 }
 .letter p {
-    color: #666;
+    color: #ffffff;
     font-size: 14px;
 }
 
@@ -132,6 +132,6 @@ button {
     transition: 0.3s;
 }
 button:hover {
-    background-color: #880e4f;
+    background-color: #ffffff;
 }
 
