@@ -16,7 +16,9 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 30px;
+    gap: 50px; /* เพิ่มระยะห่างนิดนึง เผื่อซูมแล้วจดหมายเด้งไปทับปุ่ม */
+    
+    transform: scale(1.5); /* <--- เพิ่มบรรทัดนี้เพื่อซูมเข้า! */
 }
 
 /* --- ตัวซองหลัก --- */
@@ -132,3 +134,4 @@ button {
 button:hover {
     background-color: #880e4f;
 }
+
