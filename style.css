@@ -2,7 +2,7 @@ body, html {
     margin: 0;
     padding: 0;
     height: 100%;
-    background-color: #fce4ec; /* สีพื้นหลังชมพูอ่อน */
+    background-color: #fce4ec;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,33 +10,95 @@ body, html {
 }
 
 .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+/* กรอบหลักของซองจดหมาย */
+.envelope-wrapper {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    background-color: #e91e63; /* สีพื้นหลังของซองด้านใน */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    cursor: pointer;
+}
+
+/* ฝาพับด้านบน (สร้างเป็นรูปสามเหลี่ยม) */
+.flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 150px solid transparent;
+    border-right: 150px solid transparent;
+    border-top: 100px solid #d81b60; /* สีฝาพับ */
+    transform-origin: top; /* จุดหมุนอยู่ที่ขอบบน */
+    transition: transform 0.5s ease-in-out, z-index 0.2s;
+    z-index: 3; /* ให้อยู่หน้าสุดตอนยังไม่เปิด */
+}
+
+/* ตัวซองด้านหน้า (สร้างเป็นรูปสามเหลี่ยม 3 ด้าน) */
+.pocket {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 150px solid #f06292;
+    border-right: 150px solid #f06292;
+    border-bottom: 100px solid #ec407a;
+    z-index: 2; /* อยู่หน้ากระดาษจดหมาย */
+}
+
+/* กระดาษจดหมาย */
+.letter {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 260px;
+    height: 180px;
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-sizing: border-box;
     text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    z-index: 1; /* ซ่อนไว้หลังฝาและตัวซอง */
+    transition: transform 0.5s ease-in-out 0.4s; /* ดีเลย์ 0.4 วิ รอให้ฝาเปิดเสร็จก่อน */
 }
 
-#envelope-cover {
-    background: white;
-    padding: 40px;
-    border-radius: 15px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+.letter h2 {
+    color: #e91e63;
+    margin-top: 0;
 }
 
+/* --- ส่วนของแอนิเมชันเมื่อถูกสั่งเปิด --- */
+.envelope-wrapper.open .flap {
+    transform: rotateX(180deg); /* พับฝากลับไปด้านหลัง */
+    z-index: 0; /* ส่งฝาไปอยู่หลังสุด */
+    transition: transform 0.5s ease-in-out, z-index 0.2s 0.5s; /* รอจังหวะสลับเลเยอร์ */
+}
+
+.envelope-wrapper.open .letter {
+    transform: translateX(-50%) translateY(-100px); /* ดึงกระดาษจดหมายลอยขึ้นมา */
+}
+
+/* ตกแต่งปุ่ม */
 button {
-    background-color: #e91e63;
+    background-color: #333;
     color: white;
     border: none;
-    padding: 15px 30px;
-    font-size: 18px;
-    border-radius: 25px;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 20px;
     cursor: pointer;
-    transition: background 0.3s;
+    margin: 0 5px;
 }
-
 button:hover {
-    background-color: #c2185b;
-}
-
-video {
-    max-width: 100%;
-    border-radius: 10px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    background-color: #555;
 }
