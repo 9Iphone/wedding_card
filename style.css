@@ -1,4 +1,31 @@
-/* ฝาซองด้านบน (สถานะตอนกำลังปิด) */
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4f4f9;
+    font-family: sans-serif;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+}
+
+/* โครงสร้างหลักของซอง */
+.envelope-wrapper {
+    position: relative;
+    width: 320px;
+    height: 220px;
+    background-color: #c49b66; /* สีด้านในซอง */
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    cursor: pointer;
+}
+
+/* ฝาซองด้านบน */
 .flap {
     position: absolute;
     top: 0;
@@ -7,14 +34,26 @@
     height: 0;
     border-left: 160px solid transparent;
     border-right: 160px solid transparent;
-    border-top: 120px solid #e0c097;
+    border-top: 120px solid #e0c097; /* สีฝาซอง */
     transform-origin: top;
+    transition: transform 0.6s ease-in-out, z-index 0.2s;
     z-index: 3;
-    /* ตอนปิด: หน่วงเวลา 0.6s รอให้จดหมายเลื่อนเก็บเสร็จก่อนค่อยพับฝาลงมา */
-    transition: transform 0.6s ease-in-out 0.6s, z-index 0s 1.2s;
 }
 
-/* ตัวการ์ดด้านใน (สถานะตอนกำลังปิด) */
+/* กระเป๋าซองด้านหน้า */
+.pocket {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 160px solid #d4af7a;
+    border-right: 160px solid #d4af7a;
+    border-bottom: 110px solid #c9a26d;
+    z-index: 2;
+}
+
+/* ตัวการ์ดด้านใน */
 .letter {
     position: absolute;
     bottom: 0;
@@ -30,23 +69,40 @@
     align-items: center;
     justify-content: center;
     z-index: 1;
-    /* ตอนปิด: เลื่อนเก็บทันที 0s โดยไม่ต้องรอ */
-    transition: transform 0.6s ease-in-out 0s;
+    transition: transform 0.6s ease-in-out 0.3s; /* หน่วงเวลาให้ฝาเปิดก่อน */
 }
 
-/* --- แอนิเมชันตอนถูกสั่งเปิด --- */
+.logo {
+    font-size: 32px;
+    font-weight: bold;
+    color: #c49b66;
+    margin-bottom: 10px;
+    font-family: serif;
+}
 
-/* ฝาซองตอนเปิด */
+/* --- แอนิเมชันตอนเปิดซอง --- */
 .envelope-wrapper.open .flap {
     transform: rotateX(180deg);
     z-index: 0;
-    /* ตอนเปิด: พับฝาขึ้นทันที 0s โดยไม่ต้องรอ */
-    transition: transform 0.6s ease-in-out 0s, z-index 0s 0s;
+    transition: transform 0.6s ease-in-out, z-index 0.2s 0.6s;
 }
 
-/* ตัวการ์ดตอนเปิด */
 .envelope-wrapper.open .letter {
     transform: translateX(-50%) translateY(-120px);
-    /* ตอนเปิด: หน่วงเวลา 0.6s รอให้ฝาพับขึ้นไปให้สุดก่อน ค่อยเลื่อนการ์ดออกมา */
-    transition: transform 0.6s ease-in-out 0.6s;
+}
+
+/* ตกแต่งปุ่ม */
+button {
+    padding: 12px 24px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 25px;
+    background-color: #333;
+    color: white;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #555;
 }
