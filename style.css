@@ -1,116 +1,134 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #f4f4f9;
-    font-family: sans-serif;
+    background-color: #fce4ec; /* สีพื้นหลังเว็บ */
+    font-family: 'Georgia', serif;
 }
 
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 40px;
+    gap: 30px;
 }
 
-/* โครงสร้างหลักของซอง */
-.envelope-wrapper {
+/* --- ตัวซองหลัก --- */
+.envelope {
     position: relative;
-    width: 320px;
-    height: 220px;
-    background-color: #c49b66; 
-    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-    cursor: pointer;
+    width: 300px;
+    height: 200px;
+    background-color: #d81b60; /* สีด้านในซอง */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
 }
 
-/* ฝาซองด้านบน */
+/* --- ฝาซอง (สถานะตอนปิด) --- */
 .flap {
     position: absolute;
     top: 0;
     left: 0;
     width: 0;
     height: 0;
-    border-left: 160px solid transparent;
-    border-right: 160px solid transparent;
-    border-top: 120px solid #e0c097; 
+    border-left: 150px solid transparent;
+    border-right: 150px solid transparent;
+    border-top: 110px solid #f06292; /* สีฝาซอง */
     transform-origin: top;
-    z-index: 3;
-    /* ตอนปิด: รอจดหมายเลื่อนลง (0.8s) ค่อยพับฝาลงมา (0.8s) */
-    /* ทริค: สลับเลเยอร์ฝามาบังด้านหน้าตอนหมุนลงมาครึ่งทาง (1.2s) */
+    z-index: 3; /* อยู่หน้าสุด */
+    
+    /* ขาปิด: รอ 0.8s ให้จดหมายลงไปก่อน แล้วค่อยพับฝา (ใช้เวลา 0.8s) */
     transition: transform 0.8s ease-in-out 0.8s, z-index 0s 1.2s;
 }
 
-/* กระเป๋าซองด้านหน้า */
+/* --- กระเป๋าซองด้านหน้า --- */
 .pocket {
     position: absolute;
     bottom: 0;
     left: 0;
     width: 0;
     height: 0;
-    border-left: 160px solid #d4af7a;
-    border-right: 160px solid #d4af7a;
-    border-bottom: 110px solid #c9a26d;
-    z-index: 2;
+    border-left: 150px solid #e91e63;
+    border-right: 150px solid #e91e63;
+    border-bottom: 100px solid #c2185b;
+    z-index: 2; /* บังจดหมายไว้ */
 }
 
-/* ตัวการ์ดด้านใน */
+/* --- จดหมาย (สถานะตอนปิด) --- */
 .letter {
     position: absolute;
     bottom: 0;
     left: 50%;
-    transform: translateX(-50%);
-    width: 280px;
-    height: 200px;
+    transform: translateX(-50%) translateY(0);
+    width: 260px;
+    height: 180px;
     background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    z-index: 1;
-    /* ตอนปิด: เลื่อนเก็บลงทันที (0.8s) */
+    z-index: 1; /* ซ่อนอยู่หลัง pocket */
+    
+    /* ขาปิด: เลื่อนลงทันที (รอ 0s) ใช้เวลา 0.8s */
     transition: transform 0.8s ease-in-out 0s;
 }
 
+/* ตกแต่งข้อความในการ์ด */
 .logo {
-    font-size: 32px;
+    font-size: 36px;
     font-weight: bold;
-    color: #c49b66;
+    color: #d81b60;
     margin-bottom: 10px;
-    font-family: serif;
+}
+.letter h2 {
+    margin: 0;
+    color: #333;
+    font-size: 20px;
+}
+.letter p {
+    color: #666;
+    font-size: 14px;
 }
 
-/* --- แอนิเมชันตอนถูกสั่งเปิด --- */
+/* =========================================
+   แอนิเมชันเมื่อซองถูกเปิด (ใส่คลาส .open)
+   ========================================= */
 
-.envelope-wrapper.open .flap {
+/* ฝาซองตอนเปิด */
+.envelope.open .flap {
     transform: rotateX(180deg);
-    z-index: 0;
-    /* ตอนเปิด: พับฝาขึ้นทันที (0.8s) */
-    /* ทริค: สลับเลเยอร์ฝาไปซ่อนด้านหลังตอนหมุนขึ้นไปครึ่งทาง (0.4s) */
+    z-index: 0; /* ส่งไปอยู่หลังสุด */
+    
+    /* ขาเปิด: พับฝาขึ้นทันที (รอ 0s) ใช้เวลา 0.8s */
     transition: transform 0.8s ease-in-out 0s, z-index 0s 0.4s;
 }
 
-.envelope-wrapper.open .letter {
-    transform: translateX(-50%) translateY(-120px);
-    /* ตอนเปิด: รอฝาพับขึ้นให้เสร็จก่อน (0.8s) ค่อยเลื่อนจดหมายขึ้นมาช้าๆ (0.8s) */
+/* จดหมายตอนเปิด */
+.envelope.open .letter {
+    transform: translateX(-50%) translateY(-110px);
+    
+    /* ขาเปิด: รอ 0.8s ให้ฝาพับขึ้นเสร็จก่อน แล้วค่อยดันจดหมายขึ้นมา */
     transition: transform 0.8s ease-in-out 0.8s;
 }
 
-/* ตกแต่งปุ่ม */
+/* --- ปุ่มกด --- */
 button {
+    background-color: #c2185b;
+    color: white;
+    border: none;
     padding: 12px 24px;
     font-size: 16px;
-    cursor: pointer;
-    border: none;
     border-radius: 25px;
-    background-color: #333;
-    color: white;
+    cursor: pointer;
+    font-family: inherit;
     transition: 0.3s;
 }
-
 button:hover {
-    background-color: #555;
+    background-color: #880e4f;
 }

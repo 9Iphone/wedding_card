@@ -1,23 +1,22 @@
-// สั่งให้รอจนกว่าหน้าเว็บ (DOM) จะโหลดโครงสร้างเสร็จ
 document.addEventListener('DOMContentLoaded', () => {
-    
-    // ค่อยมาค้นหาปุ่มและซองจดหมาย
-    const envelope = document.getElementById('envelope');
+    const envelope = document.getElementById('my-envelope');
     const toggleBtn = document.getElementById('toggle-btn');
 
-    // ฟังก์ชันเปิด-ปิด
     function toggleEnvelope() {
+        // สลับคลาส open
         envelope.classList.toggle('open');
         
+        // เปลี่ยนข้อความปุ่ม
         if (envelope.classList.contains('open')) {
-            toggleBtn.textContent = 'ปิดซอง';
+            toggleBtn.textContent = 'พับเก็บซอง';
         } else {
             toggleBtn.textContent = 'เปิดซอง';
         }
     }
 
-    // ผูกคำสั่งเข้ากับปุ่มและซอง
+    // กดที่ปุ่มเพื่อเปิด/ปิด
     toggleBtn.addEventListener('click', toggleEnvelope);
-    envelope.addEventListener('click', toggleEnvelope);
     
+    // กดที่ตัวซองตรงๆ เพื่อเปิด/ปิดได้ด้วย
+    envelope.addEventListener('click', toggleEnvelope);
 });
